@@ -1,0 +1,52 @@
+/*
+    403410011 John Chien
+    Create at 2017/10/3
+*/
+
+body {
+    padding: 10px;
+    text-align: center;
+}
+/**ID section**/
+#article-div {
+    float: left;
+    width: 50%;
+}
+
+#counter-div {
+    float: right;
+    width: 50%;
+}
+
+#article {
+    height: 500px;
+    background-color: Lightgray;
+}
+#counter {
+    height: 500px;
+}
+
+#runButton {
+    margin-top: 30px;
+    font-size: 1.2em;
+    width: 300px;
+}
+
+
+
+/**Class section**/
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.solidborder {
+    border: solid;
+}
+
+.width95Percent {
+    width: 95%;
+}

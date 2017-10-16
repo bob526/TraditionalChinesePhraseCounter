@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Word Counter</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="hw1_css.css">
+    </head>
+    <body>
+        <h1>Assignment1 - Word Count</h1>
+        <p>Student ID: 403410011  Name: John Chien(簡成瑑)</p>
+        <div id="article-div">
+            <h2>Article</h2>
+            <textarea class="width95Percent" name="article" id="article" form="formButtom" readonly></textarea>
+        </div>
+        <div id="counter-div">
+            <h2>Count Result</h2>
+            <textarea class="width95Percent" name="counter" id="counter" form="formButtom"></textarea>
+        </div>
+        <p>&nbsp&nbsp&nbsp</p>
+        <!--Prevent Strange Layout-->
+        <form id="formButtom" action="runcode.php" method="post">
+            <fieldset>
+                <legend>Choose article:</legend>
+                <input type="radio" name="wantarticle" id="" checked>None
+                <input type="radio" name="wantarticle" id="sample-article1" onclick="showArticle(this.id)">Sample-article1
+                <input type="radio" name="wantarticle" id="sample-article2" onclick="showArticle(this.id)">Sample-article2
+                <input type="radio" name="wantarticle" id="sample-article3" onclick="showArticle(this.id)">Sample-article3
+            </fieldset>
+            
+            <input id="runButton" type="button" value="Run" onclick="runCounter()">
+        </form>
+        <script>
+            function showArticle(selectOne) {
+                //console.log(selectOne);
+                var articleFile;
+                if (selectOne=="sample-article1")
+                    articleFile = "wiki_00";
+                else if (selectOne=="sample-article2")
+                    articleFile = "wiki_01";
+                else
+                    articleFile = "wiki_02";
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status==200)
+                        document.getElementById("article").innerHTML=this.responseText;
+                }
+                xmlhttp.open("GET", articleFile, true);
+                xmlhttp.send();
+                //document.getElementById("article").innerHTML="Testing.";
+            }
+
+            function runCounter() {
+                var passToPHP;
+                if(document.getElementById('sample-article1').checked) {
+                    passToPHP = "wiki_00";
+                }
+                else if(document.getElementById('sample-article2').checked) {
+                    passToPHP = "wiki_01";
+                }
+                else {
+                    passToPHP = "wiki_02";
+                }
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status==200)
+                        document.getElementById("counter").innerHTML=this.responseText;
+                }
+                xmlhttp.open("GET", "runcode.php?file="+passToPHP, true);
+                xmlhttp.send();
+            }
+        </script>
+    </body>
+    
+</html>
